@@ -1,22 +1,22 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import api from './api'
-import './assets/main.css'
-
-const app = createApp(App)
+import UserCard from './components/UserCard.vue'
+import EmotionTable from './components/EmotionTable.vue'
 
 // Инициализация Telegram Web App
 const tg = window.Telegram.WebApp
 tg.expand()
 tg.enableClosingConfirmation()
 
+const app = createApp(App)
+
 // Глобальная конфигурация
 app.config.globalProperties.$tg = tg
 app.config.globalProperties.$api = api
 
-// Подключение иконок
-import { PlusIcon, SearchIcon } from 'lucide-vue-next'
-app.component('PlusIcon', PlusIcon)
-app.component('SearchIcon', SearchIcon)
+// Глобальные компоненты
+app.component('UserCard', UserCard)
+app.component('EmotionTable', EmotionTable)
 
 app.mount('#app')
